@@ -17,12 +17,12 @@ public class ContService {
                 "000018" +//stan
                 rrn +//rrn
                 "2TAMNFY00000001" +//merchant id
-                "0222";//trans date
+                "0613";//trans date
         String s = aesEncrypter.encryptEcb(transactionParameters,
-                "EeJ/7zrGciS2h2g45nVmI3l1YDrYiRzYXDTg5CdIIl4=");
+                "mV+R5N1KgfPDSeBgqV+XD4m6xTFaIO8o7W/NtZRVtVg=");
         System.out.println(s);
-//        String decrypt = aesEncrypter.decrypt(s, "EeJ/7zrGciS2h2g45nVmI3l1YDrYiRzYXDTg5CdIIl4=");
-//        log.info("compare** {}",decrypt.equals(transactionParameters));
+        String decrypt = aesEncrypter.decryptECB(s, "mV+R5N1KgfPDSeBgqV+XD4m6xTFaIO8o7W/NtZRVtVg=");
+        log.info("compare** {}",decrypt.equals(transactionParameters));
         return s;
 //        String abcdefg = aesEncrypter.encrypt("thisisakey", "t3@mApt123456789");
 //        log.info(abcdefg);

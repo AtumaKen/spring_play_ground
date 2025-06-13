@@ -125,6 +125,17 @@ public final class AesEncrypter {
         SecretKey originalKey = keyGenerator.generateKey();
         return Base64.getEncoder().encodeToString(originalKey.getEncoded());
     }
+    public String decryptECB(String signature, String encodedKey) throws Exception {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.DECRYPT_MODE, toSecretKey(encodedKey));
+            byte[] plainText = cipher.doFinal(Base64.getDecoder().decode(signature));
+            return new String(plainText);
+        } catch (Exception e) {
+            log.error("An error occurred while decrypting data, ",e);
+            throw new Exception("An error occurred while decrypting data");
+        }
+    }
 
 
 
